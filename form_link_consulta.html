@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedí tu link personalizado · WGH Argentina</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+  :root {
+    --midnight: #0D2B35;
+    --teal: #1A4A5C;
+    --aqua: #96D6DF;
+    --lime: #C8E535;
+    --gold: #F5A623;
+    --white: #FFFFFF;
+    --muted: #7AAEC8;
+    --card: #122D38;
+    --border: rgba(150,214,223,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--midnight);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  .hero {
+    background: linear-gradient(160deg, #0D2B35 0%, #1A4A5C 100%);
+    border-bottom: 3px solid var(--lime);
+    padding: 44px 24px 40px;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(200,229,53,0.12);
+    border: 1px solid var(--lime);
+    color: var(--lime);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.7rem, 5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 em { color: var(--lime); font-style: normal; }
+
+  .hero p {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(200,229,53,0.1);
+    border: 1px solid rgba(200,229,53,0.3);
+    border-radius: 8px;
+    padding: 10px 18px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--lime);
+  }
+
+  .counter span { font-size: 22px; font-weight: 900; }
+
+  .wrap {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 40px 20px 0;
+  }
+
+  .how {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+
+  .how-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .how ol {
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .how ol li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+
+  .how ol li strong { color: var(--white); }
+
+  /* FORM */
+  .form-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+
+  .field {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--aqua);
+    letter-spacing: 0.05em;
+    margin-bottom: 7px;
+  }
+
+  label .req { color: var(--lime); margin-left: 2px; }
+
+  input, select, textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(150,214,223,0.2);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--aqua);
+    background: rgba(150,214,223,0.05);
+  }
+
+  select option { background: var(--midnight); color: var(--white); }
+
+  textarea { resize: vertical; min-height: 80px; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--lime);
+    color: var(--midnight);
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .submit-btn:hover { background: #d8f53e; transform: translateY(-1px); }
+  .submit-btn:active { transform: translateY(0); }
+
+  .fine {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* SUCCESS */
+  .success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .success-icon { font-size: 52px; margin-bottom: 16px; }
+
+  .success h2 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--lime);
+    margin-bottom: 10px;
+  }
+
+  .success p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 32px 20px 0;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .footer a { color: var(--aqua); text-decoration: none; }
+
+  @media (max-width: 420px) {
+    .row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Consulta Nacional · WGH Argentina</div>
+  <h1>Pedí tu<br><em>link personalizado</em></h1>
+  <p>Con tu link propio podés ver cuántas respuestas generaste y ser parte del ranking de voceras.</p>
+  <div class="counter">
+    🎯 <span>1.800</span> respuestas · Meta: <strong>5.000</strong> · 24 agosto
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="how">
+    <div class="how-title">Cómo funciona</div>
+    <ol>
+      <li>Completás este form y te enviamos <strong>tu link único</strong> de la Consulta.</li>
+      <li>Compartís ese link con tus contactos, grupos y redes.</li>
+      <li>Podés ver <strong>cuántas respuestas generaste vos</strong> y competir en el ranking.</li>
+      <li>Quien más consiga antes del 24 de agosto <strong>se lleva un premio</strong> 🎁</li>
+    </ol>
+  </div>
+
+  <div class="form-card" id="formWrap">
+    <form id="mainForm" onsubmit="handleSubmit(event)">
+
+      <div class="row">
+        <div class="field">
+          <label>Nombre <span class="req">*</span></label>
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="field">
+          <label>Apellido <span class="req">*</span></label>
+          <input type="text" name="apellido" placeholder="Tu apellido" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" name="email" placeholder="tu@email.com" required>
+      </div>
+
+      <div class="field">
+        <label>WhatsApp / Celular <span class="req">*</span></label>
+        <input type="tel" name="whatsapp" placeholder="11 1234-5678" required>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Provincia <span class="req">*</span></label>
+          <select name="provincia" required>
+            <option value="" disabled selected>Seleccioná</option>
+            <option>Buenos Aires</option>
+            <option>CABA</option>
+            <option>Catamarca</option>
+            <option>Chaco</option>
+            <option>Chubut</option>
+            <option>Córdoba</option>
+            <option>Corrientes</option>
+            <option>Entre Ríos</option>
+            <option>Formosa</option>
+            <option>Jujuy</option>
+            <option>La Pampa</option>
+            <option>La Rioja</option>
+            <option>Mendoza</option>
+            <option>Misiones</option>
+            <option>Neuquén</option>
+            <option>Río Negro</option>
+            <option>Salta</option>
+            <option>San Juan</option>
+            <option>San Luis</option>
+            <option>Santa Cruz</option>
+            <option>Santa Fe</option>
+            <option>Santiago del Estero</option>
+            <option>Tierra del Fuego</option>
+            <option>Tucumán</option>
+            <option>Otro país</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Sector / Organización</label>
+          <input type="text" name="organizacion" placeholder="Ej: Hospital Garrahan">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>¿Cómo vas a difundir la Consulta? <span class="req">*</span></label>
+        <select name="canal" required>
+          <option value="" disabled selected>Seleccioná el canal principal</option>
+          <option>WhatsApp personal / grupos</option>
+          <option>Instagram / redes sociales</option>
+          <option>LinkedIn</option>
+          <option>Email / newsletter</option>
+          <option>En mi organización / institución</option>
+          <option>Múltiples canales</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>¿Cuántas respuestas creés que podés conseguir?</label>
+        <select name="meta">
+          <option value="" disabled selected>Elegí un rango</option>
+          <option>10 a 25</option>
+          <option>25 a 50</option>
+          <option>50 a 100</option>
+          <option>Más de 100</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>¿Algo más que quieras contarnos?</label>
+        <textarea name="comentario" placeholder="Comunidades, redes o ideas para difundir..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Quiero mi link personalizado →</button>
+
+      <p class="fine">Te contactamos por WhatsApp o email en las próximas 24 horas con tu link.</p>
+    </form>
+
+    <div class="success" id="successMsg">
+      <div class="success-icon">🎉</div>
+      <h2>¡Listo!</h2>
+      <p>Recibimos tu solicitud. En las próximas 24 horas te mandamos tu link personalizado por WhatsApp o email.<br><br>Mientras tanto, podés compartir <strong>loquelasmujeresnecesitan.org</strong></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Women in Global Health Argentina · <a href="https://www.wghargentina.org" target="_blank">wghargentina.org</a></p>
+</div>
+
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwiB_FFDNPutwUYXQgUX5li0EdpgQCwyugUV5eh0WeUJQy_PanvpU_dYW_ybxjlgP7S/exec";
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.querySelector('.submit-btn');
+  const original = btn.textContent;
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  const formEl = document.getElementById('mainForm');
+  const fd = new FormData(formEl);
+  const data = { form: 'LinkConsulta' };
+  fd.forEach((v, k) => { data[k] = v; });
+
+  try {
+    await fetch(ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    formEl.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  } catch(err) {
+    btn.textContent = original;
+    btn.disabled = false;
+    alert('Hubo un error al enviar. Intentá de nuevo.');
+  }
+}
+</script>
+
+</body>
+</html>

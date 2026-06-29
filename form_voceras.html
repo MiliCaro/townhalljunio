@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Workshop de Voceras · WGH Argentina</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+  :root {
+    --midnight: #0D2B35;
+    --teal: #1A4A5C;
+    --aqua: #96D6DF;
+    --lime: #C8E535;
+    --gold: #F5A623;
+    --white: #FFFFFF;
+    --muted: #7AAEC8;
+    --card: #122D38;
+    --border: rgba(150,214,223,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--midnight);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  .hero {
+    background: linear-gradient(160deg, #0D1F2A 0%, #1A3A4A 100%);
+    border-bottom: 3px solid var(--gold);
+    padding: 44px 24px 40px;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(245,166,35,0.12);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.7rem, 5vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 em { color: var(--gold); font-style: normal; }
+
+  .hero p {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 460px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .pill {
+    background: rgba(150,214,223,0.1);
+    border: 1px solid rgba(150,214,223,0.25);
+    color: var(--aqua);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  .wrap {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 40px 20px 0;
+  }
+
+  .what-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+
+  .what-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .what-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .what-item span { font-size: 18px; flex-shrink: 0; }
+
+  /* FORM */
+  .form-card {
+    background: var(--card);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 16px;
+    padding: 28px 24px;
+  }
+
+  .form-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--aqua);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+    margin-top: 24px;
+  }
+
+  .form-section-label:first-child { margin-top: 0; }
+
+  .field { margin-bottom: 16px; }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--aqua);
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  label .req { color: var(--gold); margin-left: 2px; }
+
+  input, select, textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(150,214,223,0.2);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+    background: rgba(245,166,35,0.04);
+  }
+
+  select option { background: var(--midnight); color: var(--white); }
+  textarea { resize: vertical; min-height: 85px; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* Checkboxes */
+  .check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .check-item input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: var(--gold);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .check-item span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--midnight);
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .submit-btn:hover { background: #f7b840; transform: translateY(-1px); }
+  .submit-btn:active { transform: translateY(0); }
+
+  .fine {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* SUCCESS */
+  .success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .success-icon { font-size: 52px; margin-bottom: 16px; }
+
+  .success h2 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .success p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 32px 20px 0;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .footer a { color: var(--aqua); text-decoration: none; }
+
+  @media (max-width: 420px) {
+    .row { grid-template-columns: 1fr; }
+    .what-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Primera cohorte · WGH Argentina</div>
+  <h1>Workshop de<br><em>Voceras</em></h1>
+  <p>No es solo formación. Es cómo WGH amplifica todo lo que hace — y cómo vos amplificás todo lo que sabés.</p>
+  <div class="pills">
+    <span class="pill">Comunicación estratégica</span>
+    <span class="pill">Media training</span>
+    <span class="pill">Vocería en salud</span>
+    <span class="pill">Link personalizado Consulta</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="what-card">
+    <div class="what-title">¿Qué incluye?</div>
+    <div class="what-grid">
+      <div class="what-item"><span>🎤</span> Formación en vocería estratégica</div>
+      <div class="what-item"><span>📱</span> Presencia en medios y redes</div>
+      <div class="what-item"><span>🔗</span> Tu link personalizado de la Consulta</div>
+      <div class="what-item"><span>🏆</span> Ranking y premio a la top vocera</div>
+      <div class="what-item"><span>🌐</span> Visibilidad en la red WGH</div>
+      <div class="what-item"><span>📄</span> Certificado de participación</div>
+    </div>
+  </div>
+
+  <div class="form-card" id="formWrap">
+    <form id="mainForm" onsubmit="handleSubmit(event)">
+
+      <div class="form-section-label">Datos personales</div>
+
+      <div class="row">
+        <div class="field">
+          <label>Nombre <span class="req">*</span></label>
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="field">
+          <label>Apellido <span class="req">*</span></label>
+          <input type="text" name="apellido" placeholder="Tu apellido" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" name="email" placeholder="tu@email.com" required>
+      </div>
+
+      <div class="field">
+        <label>WhatsApp <span class="req">*</span></label>
+        <input type="tel" name="whatsapp" placeholder="11 1234-5678" required>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Provincia <span class="req">*</span></label>
+          <select name="provincia" required>
+            <option value="" disabled selected>Seleccioná</option>
+            <option>Buenos Aires</option>
+            <option>CABA</option>
+            <option>Catamarca</option>
+            <option>Chaco</option>
+            <option>Chubut</option>
+            <option>Córdoba</option>
+            <option>Corrientes</option>
+            <option>Entre Ríos</option>
+            <option>Formosa</option>
+            <option>Jujuy</option>
+            <option>La Pampa</option>
+            <option>La Rioja</option>
+            <option>Mendoza</option>
+            <option>Misiones</option>
+            <option>Neuquén</option>
+            <option>Río Negro</option>
+            <option>Salta</option>
+            <option>San Juan</option>
+            <option>San Luis</option>
+            <option>Santa Cruz</option>
+            <option>Santa Fe</option>
+            <option>Santiago del Estero</option>
+            <option>Tierra del Fuego</option>
+            <option>Tucumán</option>
+            <option>Otro país</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Perfil profesional <span class="req">*</span></label>
+          <select name="perfil" required>
+            <option value="" disabled selected>Seleccioná</option>
+            <option>Salud (clínica / gestión)</option>
+            <option>Academia / investigación</option>
+            <option>Sociedad civil / ONG</option>
+            <option>Sector privado / empresa</option>
+            <option>Gobierno / sector público</option>
+            <option>Comunicación / medios</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Organización o institución</label>
+        <input type="text" name="organizacion" placeholder="Donde trabajás o tu área de referencia">
+      </div>
+
+      <div class="form-section-label">Tu voz hoy</div>
+
+      <div class="field">
+        <label>¿Tenés experiencia hablando en público o en medios? <span class="req">*</span></label>
+        <select name="experiencia" required>
+          <option value="" disabled selected>Seleccioná</option>
+          <option>Sí, regularmente (paneles, entrevistas, eventos)</option>
+          <option>Algo de experiencia, pero quiero mejorar</option>
+          <option>Poca o ninguna — quiero empezar</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>¿En qué temas te sentís más experta o querés vocear?</label>
+        <div class="check-group">
+          <label class="check-item">
+            <input type="checkbox" name="tema" value="salud_mujer">
+            <span>Salud de las mujeres en general</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="tema" value="liderazgo">
+            <span>Liderazgo femenino en salud</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="tema" value="datos">
+            <span>Datos, evidencia y política pública</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="tema" value="financiamiento">
+            <span>Financiamiento y sostenibilidad del sistema</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="tema" value="salud_digital">
+            <span>Salud digital / tecnología</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" name="tema" value="otro_tema">
+            <span>Otro tema (lo cuento abajo)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>¿Por qué querés ser parte de esta primera cohorte?</label>
+        <textarea name="motivacion" placeholder="Contanos en pocas líneas tu motivación o qué querés lograr..."></textarea>
+      </div>
+
+      <div class="form-section-label">Disponibilidad</div>
+
+      <div class="field">
+        <label>¿Podés participar de encuentros virtuales en horario laboral? <span class="req">*</span></label>
+        <select name="disponibilidad" required>
+          <option value="" disabled selected>Seleccioná</option>
+          <option>Sí, sin problema</option>
+          <option>Depende del día / necesito coordinar</option>
+          <option>Prefiero horarios nocturnos o fines de semana</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Anotarme al Workshop de Voceras →</button>
+
+      <p class="fine">Te confirmaremos por WhatsApp dentro de las 48 horas. Primera cohorte — cupos limitados.</p>
+
+    </form>
+
+    <div class="success" id="successMsg">
+      <div class="success-icon">🎤</div>
+      <h2>¡Te anotaste!</h2>
+      <p>Recibimos tu inscripción al Workshop de Voceras. Te contactamos en las próximas 48 horas con los detalles.<br><br>Mientras tanto, compartí la Consulta en <strong>loquelasmujeresnecesitan.org</strong></p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Women in Global Health Argentina · <a href="https://www.wghargentina.org" target="_blank">wghargentina.org</a></p>
+</div>
+
+<script>
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwiB_FFDNPutwUYXQgUX5li0EdpgQCwyugUV5eh0WeUJQy_PanvpU_dYW_ybxjlgP7S/exec";
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.querySelector('.submit-btn');
+  const original = btn.textContent;
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  const formEl = document.getElementById('mainForm');
+  const fd = new FormData(formEl);
+  const data = { form: 'Voceras' };
+  
+  // Campos normales
+  fd.forEach((v, k) => {
+    if (k === 'tema') return; // los checkboxes los manejamos aparte
+    data[k] = v;
+  });
+  
+  // Checkboxes de temas (pueden ser múltiples)
+  const temas = [...formEl.querySelectorAll('input[name="tema"]:checked')]
+    .map(el => el.value).join(', ');
+  data['temas'] = temas || 'Ninguno seleccionado';
+
+  try {
+    await fetch(ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    formEl.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  } catch(err) {
+    btn.textContent = original;
+    btn.disabled = false;
+    alert('Hubo un error al enviar. Intentá de nuevo.');
+  }
+}
+</script>
+
+</body>
+</html>
