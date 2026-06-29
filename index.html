@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Townhall N°6 — WGH Argentina</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+  :root {
+    --midnight: #0D3440;
+    --teal: #245762;
+    --aqua: #96D6DF;
+    --aqua-light: #C8EEF3;
+    --lime: #C8E535;
+    --gold: #F5A623;
+    --sand: #FCFAF9;
+    --white: #FFFFFF;
+    --text-dark: #0D2B35;
+    --text-mid: #3A6370;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--midnight);
+    color: var(--white);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(160deg, #0D2B35 0%, #1A4A5C 60%, #0D3440 100%);
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid var(--lime);
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px dashed rgba(150, 214, 223, 0.2);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 1px dashed rgba(200, 229, 53, 0.15);
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .logo-dot {
+    width: 36px; height: 36px;
+    background: var(--aqua);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: var(--midnight);
+  }
+
+  .logo-text {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--aqua);
+    text-transform: uppercase;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: rgba(200, 229, 53, 0.15);
+    border: 1px solid var(--lime);
+    color: var(--lime);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .header h1 span { color: var(--aqua); }
+
+  .header-date {
+    font-size: 15px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+  }
+
+  .header-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 6px;
+  }
+
+  /* COUNTER STRIP */
+  .counter-strip {
+    background: var(--lime);
+    padding: 18px 24px;
+    text-align: center;
+  }
+
+  .counter-strip p {
+    color: var(--midnight);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  .counter-strip span {
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--aqua);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(150, 214, 223, 0.2);
+  }
+
+  /* ACTION CARDS */
+  .action-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(150, 214, 223, 0.15);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .action-card:hover {
+    border-color: rgba(150, 214, 223, 0.4);
+    background: rgba(255,255,255,0.07);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .card-emoji {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  /* PRIORITY CARD — consulta */
+  .action-card.priority {
+    border-color: var(--lime);
+    background: rgba(200, 229, 53, 0.06);
+  }
+
+  .action-card.priority .card-title { color: var(--lime); }
+
+  /* CTA BUTTON */
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cta-btn.primary {
+    background: var(--lime);
+    color: var(--midnight);
+  }
+  .cta-btn.primary:hover { background: #d8f53e; transform: translateY(-1px); }
+
+  .cta-btn.secondary {
+    background: transparent;
+    color: var(--aqua);
+    border: 1.5px solid var(--aqua);
+  }
+  .cta-btn.secondary:hover { background: rgba(150, 214, 223, 0.1); transform: translateY(-1px); }
+
+  .cta-btn.gold {
+    background: var(--gold);
+    color: var(--midnight);
+  }
+  .cta-btn.gold:hover { background: #f7b840; transform: translateY(-1px); }
+
+  .cta-btn.ghost {
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,0.2);
+  }
+  .cta-btn.ghost:hover { background: rgba(255,255,255,0.14); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: rgba(150, 214, 223, 0.12);
+    margin: 40px 0;
+  }
+
+  /* INFO CARDS — coloquio */
+  .info-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(150, 214, 223, 0.12);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+
+  .info-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .info-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+  }
+
+  .info-card strong { color: var(--white); }
+
+  /* TAG ROW */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .tag {
+    background: rgba(150, 214, 223, 0.1);
+    border: 1px solid rgba(150, 214, 223, 0.25);
+    color: var(--aqua);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(150, 214, 223, 0.1);
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer a {
+    color: var(--aqua);
+    text-decoration: none;
+  }
+
+  .footer .social-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 12px;
+  }
+
+  .footer .social-row a {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s;
+  }
+
+  .footer .social-row a:hover { color: var(--aqua); }
+
+  /* PROGRESS BAR */
+  .progress-wrap {
+    margin-bottom: 16px;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 6px;
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--lime);
+    border-radius: 10px;
+    width: 36%; /* 1800 / 5000 */
+    transition: width 1s ease;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .header { padding: 36px 20px 44px; }
+    .main { padding: 36px 16px 60px; }
+    .action-card { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo-row">
+    <div class="logo-dot">W</div>
+    <div class="logo-text">Women in Global Health Argentina</div>
+  </div>
+  <div class="header-badge">Townhall N°6</div>
+  <h1>Todo lo que<br><span>podés hacer hoy</span></h1>
+  <div class="header-date">Lunes 29 de junio de 2026</div>
+  <div class="header-sub">Links, forms y acciones concretas</div>
+</div>
+
+<!-- COUNTER STRIP -->
+<div class="counter-strip">
+  <p>🎯 Consulta Nacional: <span>1.800</span> respuestas · Meta: <span>5.000</span> antes del 24 de agosto · <strong>56 días</strong></p>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ACCIONES URGENTES -->
+  <div class="section-label">Esto es urgente</div>
+
+  <!-- CONSULTA -->
+  <div class="action-card priority">
+    <div class="card-top">
+      <div class="card-emoji">💥</div>
+      <div>
+        <div class="card-title">Respondé y difundí la Consulta</div>
+        <div class="card-desc">La primera consulta nacional sobre salud de las mujeres en Argentina. Cada respuesta es evidencia real para políticas públicas reales. Meta: 5.000 antes del Coloquio.</div>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>1.800 respuestas actuales</span>
+        <span>Meta: 5.000</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+
+    <a class="cta-btn primary" href="https://loquelasmujeresnecesitan.org" target="_blank">
+      → Ir a loquelasmujeresnecesitan.org
+    </a>
+  </div>
+
+  <!-- VOCERAS -->
+  <div class="action-card">
+    <div class="card-top">
+      <div class="card-emoji">🎤</div>
+      <div>
+        <div class="card-title">Workshop de Voceras — Primera cohorte</div>
+        <div class="card-desc">No es solo formación. Es cómo WGH amplifica todo lo que hace. Anotate para ser parte de la primera cohorte y recibir tu link personalizado de la Consulta con ranking propio.</div>
+      </div>
+    </div>
+    <a class="cta-btn gold" href="mailto:info@wghargentina.org?subject=Quiero%20ser%20Vocera%20WGH" target="_blank">
+      → Anotarme al Workshop de Voceras
+    </a>
+  </div>
+
+  <!-- EVENTOS -->
+  <div class="action-card">
+    <div class="card-top">
+      <div class="card-emoji">📅</div>
+      <div>
+        <div class="card-title">Reportá un evento del sector</div>
+        <div class="card-desc">Estamos construyendo el mapa de eventos de salud, liderazgo y política sanitaria en Argentina. Si conocés uno relevante para los próximos 3 meses, mandánoslo.</div>
+      </div>
+    </div>
+    <a class="cta-btn secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSeOtRh3i6u74TTJCWNQZledHM2f-1kO2G1iRVTKADjRPKIpeQ/viewform" target="_blank">
+      → Completar el form de eventos
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COLOQUIO -->
+  <div class="section-label">Coloquio Líderes en Salud 2026</div>
+
+  <div class="info-card">
+    <div class="info-card-title">Fecha y lugar</div>
+    <p><strong>24 de agosto, 14 a 18h</strong><br>Paseo La Plaza, CABA · Presencial + Streaming</p>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-title">Ejes temáticos</div>
+    <div class="tag-row">
+      <span class="tag">Financiamiento de la salud</span>
+      <span class="tag">El poder de los datos</span>
+      <span class="tag">Confianza en el sistema</span>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-card-title">¿Conocés una empresa que debería ser sponsor?</div>
+    <p>Estamos abriendo el proceso de sponsors. Si tenés un contacto relevante, hablá con <strong>Emilia o Gabriela</strong>. Tu introducción puede ser clave.</p>
+  </div>
+
+  <a class="cta-btn ghost" href="https://www.wghargentina.org" target="_blank" style="margin-top:4px;">
+    → Ver más sobre el Coloquio en wghargentina.org
+  </a>
+
+  <div class="divider"></div>
+
+  <!-- SOCIAS -->
+  <div class="section-label">Comunidad WGH</div>
+
+  <div class="action-card">
+    <div class="card-top">
+      <div class="card-emoji">👥</div>
+      <div>
+        <div class="card-title">Actualizá tus datos de socia</div>
+        <div class="card-desc">La base de datos consolidada es la base de todo lo que construimos juntas. Si aún no actualizaste tu información o querés sumarte a una comisión, hacelo ahora.</div>
+      </div>
+    </div>
+    <a class="cta-btn secondary" href="https://www.wghargentina.org" target="_blank">
+      → Actualizar mis datos
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Women in Global Health Argentina · <a href="https://www.wghargentina.org" target="_blank">wghargentina.org</a></p>
+  <div class="social-row">
+    <a href="https://instagram.com/womeningh.ar" target="_blank">@womeningh.ar</a>
+    <a href="https://loquelasmujeresnecesitan.org" target="_blank">loquelasmujeresnecesitan.org</a>
+    <a href="mailto:info@wghargentina.org">info@wghargentina.org</a>
+  </div>
+</div>
+
+</body>
+</html>
